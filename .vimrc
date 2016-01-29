@@ -44,7 +44,6 @@ filetype plugin indent on    " required
  set number	" Numbers on the left
  set laststatus=2
  set backspace=2
- set background=dark
 " let g:solarized_termcolors = 256
   colorscheme 256-jungle
 " colorscheme jelleybeans
