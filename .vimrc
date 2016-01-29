@@ -45,8 +45,10 @@ filetype plugin indent on    " required
  set laststatus=2
  set backspace=2
  set background=dark
- let g:solarized_termcolors = 256
- colorscheme solarized
+" let g:solarized_termcolors = 256
+  colorscheme 256-jungle
+" colorscheme jelleybeans
+" colorscheme solarized
 " colorscheme obsidian
 " color scheme Monokai
 
