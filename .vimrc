@@ -26,7 +26,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/NerdTree'
 Plugin 'honza/vim-snippets'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'ervandew/supertab'
+"Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
