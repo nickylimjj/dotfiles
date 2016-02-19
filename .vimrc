@@ -19,13 +19,15 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-bufferline'
-Plugin 'tpope/vim-vinegar'
-Plugin 'Townk/vim-autoclose'
-Plugin 'SirVer/ultisnips'
+Plugin 'easymotion/vim-easymotion' "see usage :help easymotion.txt
+"Plugin 'Shougo/neocomplete.vim'
+"Plugin 'tpope/vim-vinegar'
+"Plugin 'Townk/vim-autoclose'
+"Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/NerdTree'
-Plugin 'honza/vim-snippets'
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'honza/vim-snippets'
+"Plugin 'altercation/vim-colors-solarized'
 "Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
@@ -101,11 +103,21 @@ filetype plugin indent on    " required
  let g:UltiSnipsExpandTrigger="<tab>"
  let g:UltiSnipsJumpForwardTrigger="<c-j>"
  let g:UltiSnipsJumpBackwardTrigger="<c-k>"
- let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
- let g:ycm_key_list_select_completion=[]
- let g:ycm_key_list_previous_completion=[]
 
 """""""""""""""""""""""""""""""""""""""""""""
 " NERDTree configuration
 """""""""""""""""""""""""""""""""""""""""""""
  map <C-n> :NERDTreeToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" You Complete Me
+"""""""""""""""""""""""""""""""""""""""""""""
+ let g:ycm_global_ycm_extra_conf = "/Users/nicky/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+" let g:ycm_key_list_select_completion=[]
+" let g:ycm_key_list_previous_completion=[]
+
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Neocomplete.vim
+"""""""""""""""""""""""""""""""""""""""""""""
+"let g:neocomplete#enable_at_startup = 1
