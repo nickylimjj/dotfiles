@@ -1,11 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype plugin indent on     " required
-" show existing tab with 4 spaces width
-set tabstop=4
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
-set expandtab
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -20,11 +14,12 @@ Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-bufferline'
 Plugin 'easymotion/vim-easymotion' "see usage :help easymotion.txt
+Plugin 'jiangmiao/auto-pairs'
 "Plugin 'Shougo/neocomplete.vim'
 "Plugin 'tpope/vim-vinegar'
-"Plugin 'Townk/vim-autoclose'
 "Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/vim-operator-highlight'
 Plugin 'scrooloose/NerdTree'
 "Plugin 'honza/vim-snippets'
 "Plugin 'altercation/vim-colors-solarized'
@@ -52,6 +47,13 @@ filetype plugin indent on    " required
  set number	" Numbers on the left
  set laststatus=2
  set backspace=2
+" show existing tab with 4 spaces width
+ set tabstop=4
+" when indenting with '>', use 4 spaces width
+ set shiftwidth=4
+" On pressing tab, insert 4 spaces
+" set expandtab
+
 " let g:solarized_termcolors = 256
   colorscheme 256-jungle
 " colorscheme jelleybeans
@@ -113,10 +115,26 @@ filetype plugin indent on    " required
 " You Complete Me
 """""""""""""""""""""""""""""""""""""""""""""
  let g:ycm_global_ycm_extra_conf = "/Users/nicky/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+ let g:ycm_autoclose_preview_window_after_completion=0
+ let g:clang_complete_macros=1
+ set pumheight=8
+ let g:ycm_error_symbol = '!>'
+ let g:ycm_warning_symbol = 'W>'
+ let g:ycm_enable_diagnostic_highlighting = 0
+ let g:ycm_add_preview_to_completeopt = 1
+ let g:ycm_autoclose_preview_window_after_insertion = 1
 " let g:ycm_key_list_select_completion=[]
 " let g:ycm_key_list_previous_completion=[]
 
+"""""""""""""""""""""""""""""""""""""""""""""
+" Vim Operator Highlight 
+"""""""""""""""""""""""""""""""""""""""""""""
+ let g:ophigh_color = 14	" setting operator color
 
+"""""""""""""""""""""""""""""""""""""""""""""
+" Auto pairs 
+"""""""""""""""""""""""""""""""""""""""""""""
+ "let g:AutoPairsShortcutFastWrap
 """""""""""""""""""""""""""""""""""""""""""""
 " Neocomplete.vim
 """""""""""""""""""""""""""""""""""""""""""""
