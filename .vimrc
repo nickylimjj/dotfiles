@@ -1,5 +1,5 @@
 set nocompatible              " be iMproved, required
-filetype plugin indent on     " required
+filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -11,19 +11,21 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-bufferline'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'easymotion/vim-easymotion' "see usage :help easymotion.txt
 Plugin 'jiangmiao/auto-pairs'
-"Plugin 'Shougo/neocomplete.vim'
-"Plugin 'tpope/vim-vinegar'
-"Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'Valloric/vim-operator-highlight'
+Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/NerdTree'
+Plugin 'tpope/vim-surround'
+Plugin 'ervandew/supertab'
+Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'honza/vim-snippets'
 "Plugin 'altercation/vim-colors-solarized'
-"Plugin 'ervandew/supertab'
+"Plugin 'Shougo/neocomplete.vim'
+"Plugin 'tpope/vim-vinegar'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,13 +55,17 @@ filetype plugin indent on    " required
  set shiftwidth=4
 " On pressing tab, insert 4 spaces
 " set expandtab
+" set relative line number
+" set relativenumber
 
 " let g:solarized_termcolors = 256
-  colorscheme 256-jungle
+" colorscheme 256-jungle
+  colorscheme herald
+" colorscheme brogrammer
 " colorscheme jelleybeans
 " colorscheme solarized
 " colorscheme obsidian
-" color scheme Monokai
+" colorscheme Monokai
 
 """""""""""""""""""""""""""""""""""""""""""""
 " airline
@@ -103,8 +109,8 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""
 " :UltiSnipsEdit to modify snips that are associated to certain filetypes
  let g:UltiSnipsExpandTrigger="<tab>"
- let g:UltiSnipsJumpForwardTrigger="<c-j>"
- let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+ let g:UltiSnipsJumpForwardTrigger="<tab>"
+ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 """""""""""""""""""""""""""""""""""""""""""""
 " NERDTree configuration
@@ -123,19 +129,44 @@ filetype plugin indent on    " required
  let g:ycm_enable_diagnostic_highlighting = 0
  let g:ycm_add_preview_to_completeopt = 1
  let g:ycm_autoclose_preview_window_after_insertion = 1
-" let g:ycm_key_list_select_completion=[]
-" let g:ycm_key_list_previous_completion=[]
+" make YCM compatible with UltiSnips
+ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+ let g:SuperTabDefaultCompletionType = '<C-n>'
 
 """""""""""""""""""""""""""""""""""""""""""""
 " Vim Operator Highlight 
 """""""""""""""""""""""""""""""""""""""""""""
  let g:ophigh_color = 14	" setting operator color
+ " get filetype name by :set filetype?
+ let g:ophigh_filetypes_to_ignore = {
+			 \ 'asm':1, 'nerdtree':1 }
 
 """""""""""""""""""""""""""""""""""""""""""""
 " Auto pairs 
 """""""""""""""""""""""""""""""""""""""""""""
- "let g:AutoPairsShortcutFastWrap
+ "let g:AutoPairsShortcutFastWrap = '<M-w>'
+ let g:AutoPairsFlyMode = 0
 """""""""""""""""""""""""""""""""""""""""""""
 " Neocomplete.vim
 """""""""""""""""""""""""""""""""""""""""""""
 "let g:neocomplete#enable_at_startup = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" keyboard remaps
+"""""""""""""""""""""""""""""""""""""""""""""
+
+" disable arrow keys
+no <up> <nop>
+no <down> <nop>
+no <left> <nop>
+no <right> <nop>
+
+ino <up> <nop>
+ino <down> <nop>
+ino <left> <nop>
+ino <right> <nop>
+
+" map insert 
+nmap <S-Enter> O<Esc>
+nmap <CR> o<Esc>
