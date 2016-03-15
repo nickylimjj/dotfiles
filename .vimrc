@@ -22,6 +22,7 @@ Plugin 'scrooloose/NerdTree'
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tpope/vim-commentary'
 "Plugin 'honza/vim-snippets'
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'Shougo/neocomplete.vim'
@@ -147,15 +148,26 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""""""""""""""
  "let g:AutoPairsShortcutFastWrap = '<M-w>'
  let g:AutoPairsFlyMode = 0
+ let g:AutoPairsShortcutFastWrap='<C-w>'
+
 """""""""""""""""""""""""""""""""""""""""""""
 " Neocomplete.vim
 """""""""""""""""""""""""""""""""""""""""""""
 "let g:neocomplete#enable_at_startup = 1
 
 """""""""""""""""""""""""""""""""""""""""""""
+" commentary.vim
+"""""""""""""""""""""""""""""""""""""""""""""
+" Comment stuff out.
+" gcc to comment out a line (takes a count), 
+" gc to comment out the target of a motion (for example, 
+" gcap to comment out a paragraph), 
+" gc in visual mode to comment out the selection, and 
+" gc in operator pending mode to target a comment. 
+"  
+"""""""""""""""""""""""""""""""""""""""""""""
 " keyboard remaps
 """""""""""""""""""""""""""""""""""""""""""""
-
 " disable arrow keys
 no <up> <nop>
 no <down> <nop>
@@ -167,6 +179,13 @@ ino <down> <nop>
 ino <left> <nop>
 ino <right> <nop>
 
-" map insert 
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
+" map create extra line
+nmap <CR> o <Esc>
+nmap <SPACE> O <Esc>
+
+" remaps
+imap ii <Esc>
+nnoremap <leader>s :w<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>sq :wq<cr>
+nnoremap ; :
