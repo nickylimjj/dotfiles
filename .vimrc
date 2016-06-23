@@ -69,7 +69,6 @@ let os = GetRunningOS()
 " " but does not automatically use 256 colors by default.
  set t_Co=256
  let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : ''  }
-
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -102,7 +101,6 @@ let os = GetRunningOS()
 
 " colorscheme 256-jungle
 " colorscheme herald
- colorscheme onedark
 " colorscheme onedark
 " colorscheme brogrammer
 " colorscheme jelleybeans
