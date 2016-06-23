@@ -100,16 +100,14 @@ let os = GetRunningOS()
  let g:netrw_liststyle=3
 
 
-if os == "mac"
 " colorscheme 256-jungle
 " colorscheme herald
-    colorscheme onedark
+colorscheme onedark
 " colorscheme brogrammer
 " colorscheme jelleybeans
 " colorscheme solarized
 " colorscheme obsidian
 " colorscheme Monokai
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""
 " airline
