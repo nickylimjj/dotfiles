@@ -5,6 +5,22 @@
  set rtp+=~/.vim/bundle/Vundle.vim
  call vundle#begin()
 
+" OS Detection
+function! GetRunningOS()
+    if has ("win32")
+        return "win"
+    endif
+    if has ("unix")
+        if system('uname') =~ 'Darwin'
+            return "mac"
+        else
+            return "linux"
+        endif
+    endif
+endfunction
+
+let os = GetRunningOS()
+
 " Plugins
  Plugin 'VundleVim/Vundle.vim'
  Plugin 'flazz/vim-colorschemes'
@@ -16,16 +32,16 @@
  Plugin 'tpope/vim-surround' " :help surround
  Plugin 'Valloric/vim-operator-highlight'
  Plugin 'SirVer/ultisnips'
+ Plugin 'honza/vim-snippets'
  Plugin 'Valloric/YouCompleteMe'
  Plugin 'scrooloose/nerdcommenter'
  Plugin 'yonchu/accelerated-smooth-scroll'
   
  Plugin 'ervandew/supertab'
- Plugin 'ctrlpvim/ctrlp.vim'
- Plugin 'gerw/vim-HiLinkTrace'
+ Plugin 'gerw/vim-HiLinkTrace' " :help hlt
  "Plugin 'shinokada/SWTC.vim'
  "Plugin 'DavidGamba/vim-vmath'
- Plugin 'kshenoy/vim-signature' "working with marks :h signature
+ Plugin 'kshenoy/vim-signature' " working with marks :h signature
  Plugin 'gosukiwi/vim-atom-dark'
 "Plugin 'Shougo/neocomplete.vim'
 "Plugin 'tpope/vim-vinegar'
@@ -37,6 +53,10 @@
   
 " WebDev Plugins
  Plugin 'mattn/emmet-vim'
+ Plugin 'digitaltoad/vim-pug'
+ Plugin 'gorodinskiy/vim-coloresque'
+ Plugin 'kchmck/vim-coffee-script'
+ Plugin 'groenewege/vim-less'
 
 " All of your Plugins must b; added before the following line
  call vundle#end()            " required
@@ -50,15 +70,6 @@
  set t_Co=256
  let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : ''  }
 
-" Show highlighting groups for current word
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'),col('.')), 'synIDattr(v:val, "name")')
-endfunc
- 
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -85,6 +96,7 @@ endfunc
  set shiftwidth=4
 " On pressing tab, insert 4 spaces
  set expandtab
+ set wrap
 " Explorer list style
  let g:netrw_liststyle=3
 
@@ -134,11 +146,14 @@ endfunc
  let g:airline_symbols.whitespace = 'Ξ'
   
  let g:airline_section_error = 1
-" clock in vim
- function! AirlineInit()
-   let g:airline_section_y = airline#section#create('%{strftime("%H:%M")}')
-   endfunction
-   autocmd VimEnter * call AirlineInit()
+" clock in vim (mac only)
+    if os == "mac"
+     function! AirlineInit()
+       let g:airline_section_y = airline#section#create('%{strftime("%H:%M")}')
+       let g:airline_section_c = '%t'
+       endfunction
+       autocmd VimEnter * call AirlineInit()
+    endif
 """""""""""""""""""""""""""""""""""""""""""""
 " bufferline
 """""""""""""""""""""""""""""""""""""""""""""
@@ -153,7 +168,7 @@ endfunc
 " :UltiSnipsEdit to modify snips that are associated to certain filetypes
  let g:UltiSnipsExpandTrigger="<tab>"
  let g:UltiSnipsJumpForwardTrigger="<tab>"
- let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<C-n>"
 
 """""""""""""""""""""""""""""""""""""""""""""
 " You Complete Me
@@ -234,7 +249,7 @@ endfunc
  nmap <SPACE> O <Esc>
 
 " remaps
- noremap <leader>k :vsp<CR> :E<CR>
+ noremap <C-n> :vsp <bar> :Explore<CR>
  imap ii <Esc>
  nnoremap ; :
  nnoremap : ;
