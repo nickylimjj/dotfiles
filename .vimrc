@@ -48,16 +48,6 @@
 " " using 256 colors (or 88 colors) if your terminal supports it,
 " " but does not automatically use 256 colors by default.
  set t_Co=256
- let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : ''  }
-
-" Show highlighting groups for current word
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'),col('.')), 'synIDattr(v:val, "name")')
-endfunc
  
 " Brief help
 " :PluginList       - lists configured plugins
@@ -90,7 +80,6 @@ endfunc
 
 " colorscheme 256-jungle
 " colorscheme herald
- colorscheme onedark
 " colorscheme onedark
 " colorscheme brogrammer
 " colorscheme jelleybeans
@@ -135,10 +124,6 @@ endfunc
   
  let g:airline_section_error = 1
 " clock in vim
- function! AirlineInit()
-   let g:airline_section_y = airline#section#create('%{strftime("%H:%M")}')
-   endfunction
-   autocmd VimEnter * call AirlineInit()
 """""""""""""""""""""""""""""""""""""""""""""
 " bufferline
 """""""""""""""""""""""""""""""""""""""""""""
