@@ -1,5 +1,5 @@
 # aliases for convenience
-alias ls='ls -G'
+alias ls='ls -G --color=always'
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 alias ews='ssh -X limjiaj2@remlnx.ews.illinois.edu'
