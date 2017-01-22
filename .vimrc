@@ -1,5 +1,5 @@
- set nocompatible              " be iMproved, required
- filetype off
+ set nocompatible              " vi iMproved, required
+ filetype on                   " :h filetype ( vim tries to recognize the type of the file and set the filetype option)
 
 " set the runtime path to include Vundle and initialize
  set rtp+=~/.vim/bundle/Vundle.vim
@@ -26,18 +26,17 @@ let os = GetRunningOS()
  Plugin 'flazz/vim-colorschemes'
  Plugin 'bling/vim-airline'
  Plugin 'vim-airline/vim-airline-themes'
- Plugin 'bling/vim-bufferline'
  Plugin 'airblade/vim-gitgutter'
  Plugin 'jiangmiao/auto-pairs'
  Plugin 'tpope/vim-surround' " :help surround
+ Plugin 'tpope/vim-fugitive' " git wrapper
  Plugin 'Valloric/vim-operator-highlight'
  Plugin 'SirVer/ultisnips'
  Plugin 'honza/vim-snippets'
  Plugin 'Valloric/YouCompleteMe'
  Plugin 'scrooloose/nerdcommenter'
- Plugin 'yonchu/accelerated-smooth-scroll'
-  
- Plugin 'ervandew/supertab'
+ Plugin 'yonchu/accelerated-smooth-scroll' 
+ "Plugin 'ervandew/supertab'
  Plugin 'gerw/vim-HiLinkTrace' " :help hlt
  "Plugin 'shinokada/SWTC.vim'
  "Plugin 'DavidGamba/vim-vmath'
@@ -45,9 +44,10 @@ let os = GetRunningOS()
  Plugin 'gosukiwi/vim-atom-dark'
 "Plugin 'Shougo/neocomplete.vim'
 "Plugin 'tpope/vim-vinegar'
+ Plugin 'dhruvasagar/vim-table-mode' 
 
 " Generate tag file
- Plugin 'majutsushi/tagbar'
+ Plugin 'majutsushi/tagbar' " ctrl+] ctrl+t + download 
  Plugin 'xolox/vim-misc'
  Plugin 'xolox/vim-easytags'
   
@@ -58,7 +58,7 @@ let os = GetRunningOS()
  Plugin 'kchmck/vim-coffee-script'
  Plugin 'groenewege/vim-less'
 
-" All of your Plugins must b; added before the following line
+" All of your Plugins must added before the following line
  call vundle#end()            " required
  filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -69,60 +69,85 @@ let os = GetRunningOS()
 " " but does not automatically use 256 colors by default.
  set t_Co=256
  let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : ''  }
+  
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
+
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
 """""""""""""""""""""""""""""""""""""""""""""
-" general
+" General
 """""""""""""""""""""""""""""""""""""""""""""
  syntax on
+ set ignorecase " Prepend with \C for case-sensitive search
  set number	" Numbers on the left
  set cursorline " Highlight line cursor is on
  set hlsearch " highlights search
  set incsearch " Jumps to search results as I type
  set nopaste " Prevents indent chaining
- set laststatus=2 "black status line at bottom of window
- set backspace=2
-" show existing tab with 4 spaces width
- set softtabstop=4
-" when indenting with '>', use 4 spaces width
- set shiftwidth=4
-" On pressing tab, insert 4 spaces
+ set laststatus=2 " black status line at bottom of window
+ set backspace=2 " make backspace work like normal
  set expandtab
- set wrap
-" Explorer list style
- let g:netrw_liststyle=3
+ set softtabstop=4 " when 'tab' in insert mode, use 4 spaces width
+ set shiftwidth=4 " when '>>', insert 4 spaces
+ set wrap " Wraps text in window
+ let g:netrw_liststyle=3 " Explorer list style
+ let mapleader=","
+"""""""""""""""
+" Registers
+"""""""""""""""
+" :reg to view registers
+" Ctrl + r <reg name> to paste register contents when in insert mode
+" Special registers
+" "/ current search pattern
+" "- small delete
+" "= expression register (evaluate expressions)
+" ": last : command
+" ". last inserted text
+" "% filename of current buffer
+" "# filename of alt buffer
 
-
-if os == "mac"
+"""""""""""""""
+" colorschemes
+"""""""""""""""
 " colorscheme 256-jungle
 " colorscheme herald
-    colorscheme onedark
+" colorscheme onedark
 " colorscheme brogrammer
-" colorscheme jelleybeans
+  colorscheme jelleybeans
 " colorscheme solarized
 " colorscheme obsidian
 " colorscheme Monokai
-endif
 
+"""""""""""""""
+" buffers
+"""""""""""""""
+ set hidden " allows bufferes to be hidden if it's modified
+ nnoremap <leader>be :enew<CR>
+ nnoremap <leader>bn :bnext<CR>
+ nnoremap <leader>bp :bprevious<CR>
+ nnoremap <leader>bq :bprevious <BAR> bd #<CR> " idea of closing a tab
+ nnoremap <leader>bl :ls<CR>
+ nnoremap <leader>b? :map <leader>b<CR>
+  
 """""""""""""""""""""""""""""""""""""""""""""
 " airline
 """""""""""""""""""""""""""""""""""""""""""""
  set guifont=Liberation\ Mono\ for\ Powerline\ 10 
  let g:airline_theme = 'behelit'
  let g:airline_powerline_fonts = 1
- let g:airline#extensions#syntastic#enabled = 1
- let g:airline#extensions#tabline#enabled = 1
+ let g:airline#extensions#tabline#enabled = 1 " list buffers across the top
+ let g:airline#extensions#tabline#fnamemod = ':t' " list just the filename
  let g:airline#extensions#branch#enabled = 1
  let g:airline#extensions#tabline#enabled = 1
  let g:airline#extensions#tagbar#enabled = 1
  let g:airline#extensions#whitespace#enabled = 0 
+ let g:airline#extensions#syntastic#enabled = 1
+  
 " YCM
  let g:airline#extensions#ycm#enabled = 1 
  let g:airline#extensions#ycm#error_symbol = 'E:'
@@ -155,22 +180,42 @@ endif
        endfunction
        autocmd VimEnter * call AirlineInit()
     endif
-"""""""""""""""""""""""""""""""""""""""""""""
-" bufferline
-"""""""""""""""""""""""""""""""""""""""""""""
- let g:bufferline_echo = 1
- let g:bufferline_active_buffer_left = '['
- let g:bufferline_active_buffer_right = ']'
- let g:bufferline_show_bufnr = 1
 
 """""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips
 """""""""""""""""""""""""""""""""""""""""""""
 " :UltiSnipsEdit to modify snips that are associated to certain filetypes
- let g:UltiSnipsExpandTrigger="<tab>"
- let g:UltiSnipsJumpForwardTrigger="<tab>"
+ "let g:UltiSnipsExpandTrigger="<tab>"
+ "let g:UltiSnipsJumpForwardTrigger="<tab>"
 " let g:UltiSnipsJumpBackwardTrigger="<C-n>"
-
+ 
+"""""""""""""""""""""""""""""""""""""""""""""
+" Gitgutter
+"""""""""""""""""""""""""""""""""""""""""""""
+ let g:gitgutter_map_keys = 0 
+  
+"""""""""""""""""""""""""""""""""""""""""""""
+" Fugitive
+"""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>gb :Gblame<cr>
+nmap <leader>gc :Gcommit<cr>
+nmap <leader>gd :Gdiff<cr>
+nmap <leader>gg :Ggrep
+nmap <leader>gl :Glog
+nmap <leader>gp :Git pull<cr>
+nmap <leader>gP :Git push<cr>
+nmap <leader>gs :Gstatus<cr>
+nmap <leader>gw :Gbrowse<cr>
+nnoremap <leader>g? :map <leader>g<cr>
+  
+"""""""""""""""""""""""""""""""""""""""""""""
+" Emmet
+"""""""""""""""""""""""""""""""""""""""""""""
+ "Use emmet only for html and css files
+ let g:user_emmet_install_global = 0
+ autocmd FileType html,css EmmetInstall
+ let user_emmet_expandabbr_key = '<C-e>' "key to expand abbreviation
+ 
 """""""""""""""""""""""""""""""""""""""""""""
 " You Complete Me
 """""""""""""""""""""""""""""""""""""""""""""
@@ -183,10 +228,12 @@ endif
  let g:ycm_enable_diagnostic_highlighting = 0
  let g:ycm_add_preview_to_completeopt = 1
  let g:ycm_autoclose_preview_window_after_insertion = 1
+  
 " make YCM compatible with UltiSnips
  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
  let g:SuperTabDefaultCompletionType = '<C-n>'
+ let g:ycm_filetype_blacklist = {'html': 1, 'css': 1}
 
 """""""""""""""""""""""""""""""""""""""""""""
 " Vim Operator Highlight 
@@ -206,7 +253,12 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""
 " NERD Commenter
 """""""""""""""""""""""""""""""""""""""""""""
- map ,c <plug>NERDCommenterToggle
+ nmap <leader>c <plug>NERDCommenterToggle
+ let g:NERDSpaceDelim = 1
+ let g:NERDCompactSexyComs = 1
+ let g:NERDCommentEmptyLines = 1
+ let g:NERDTrimTrailingWhitespace = 1
+nnoremap <leader>c? :map <leader>c<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""
 " Neocomplete.vim
@@ -227,31 +279,28 @@ endif
  noremap <leader>8 :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""
-" keyboard remaps
+" Remaps
 """""""""""""""""""""""""""""""""""""""""""""
 
 " enable mouse scroll
  set mouse=a
 
-" disable arrow keys
- no <up> <nop>
- no <down> <nop>
- no <left> <nop>
- no <right> <nop>
+ " map to system clipboard
+ vmap <F9> "+y
 
- ino <up> <nop>
 
- ino <down> <nop>
- ino <left> <nop>
- ino <right> <nop>
-
-" map create extra line
- nmap <CR> o <Esc>
- nmap <SPACE> O <Esc>
-
-" remaps
+" Remaps
  noremap <C-n> :vsp <bar> :Explore<CR>
- imap ii <Esc>
+ ino jk <Esc>
  nnoremap ; :
  nnoremap : ;
  nnoremap rn :set relativenumber! rnu?<cr>
+  
+"""""""""""""""""""""""""""""""""""""""""""""
+" Mappings
+"""""""""""""""""""""""""""""""""""""""""""""
+" insert line above/below
+ nnoremap <CR> o <Esc>
+ nnoremap <SPACE> O <Esc>
+
+ nnoremap <F8> :hardcopy <Esc>
