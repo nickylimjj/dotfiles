@@ -6,3 +6,5 @@
     customizing my vim
 cheatsheets/
     Collection of cheatsheets and documentations for quick reference
+documentation/
+    Collection of ECE/CS-related documentations
