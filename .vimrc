@@ -111,18 +111,9 @@ let os = GetRunningOS()
 " "% filename of current buffer
 " "# filename of alt buffer
 
-<<<<<<< HEAD
-"""""""""""""""
-" colorschemes
-"""""""""""""""
 " colorscheme 256-jungle
 " colorscheme herald
 " colorscheme onedark
-=======
-" colorscheme 256-jungle
-" colorscheme herald
-colorscheme onedark
->>>>>>> d26a9a875a573011574c9723f2f76df238bf76d8
 " colorscheme brogrammer
   colorscheme jelleybeans
 " colorscheme solarized
