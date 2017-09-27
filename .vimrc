@@ -33,7 +33,6 @@ let os = GetRunningOS()
  Plugin 'Valloric/vim-operator-highlight'
  Plugin 'SirVer/ultisnips'
  Plugin 'honza/vim-snippets'
- Plugin 'Valloric/YouCompleteMe'
  Plugin 'scrooloose/nerdcommenter'
  Plugin 'yonchu/accelerated-smooth-scroll' 
  "Plugin 'ervandew/supertab'
