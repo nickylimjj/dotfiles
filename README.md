@@ -1,12 +1,12 @@
-#my personal customization documents
+# Personal Customization Documents
 
-.bash_aliases
+- .bash_aliases
     for bash terminal. Make sure to `ln` and source in .bashrc
-.bash_prompt
+- .bash_prompt
     customizing style for bash terminal. Make sure to `ln` and source in .bashrc
-.vimrc
+- .vimrc
     customizing my vim. Make sure to `ln`
-cheatsheets/
+- cheatsheets/
     Collection of cheatsheets and documentations for quick reference
-documentation/
+- documentation/
     Collection of ECE/CS-related documentations
