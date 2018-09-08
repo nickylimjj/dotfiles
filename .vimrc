@@ -9,23 +9,19 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""
 call plug#begin()
 Plug 'vim-airline/vim-airline'
+Plug 'scrooloose/nerdcommenter'
 call plug#end()
-
-""""""""""""""""""""""""""""""""""""
-" HTML support
-""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>t :set syntax=html<CR>:%!tidy -q -i --show-errors 0<CR>
-nnoremap <Leader>he :call HtmlEscape()<CR>
-nnoremap <Leader>hu :call HtmlUnescape()<CR> 
 
 """"""""""""""""""""""""""""""""""""
 " General 2
 """"""""""""""""""""""""""""""""""""
+set t_Co=256
+colorscheme slate
 set number
 set rnu
 set tw=79
 set colorcolumn=81
-highlight ColorColumn ctermbg=254
+highlight ColorColumn ctermbg=8
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -39,8 +35,6 @@ set smartcase
 set nobackup
 set nowritebackup
 set noswapfile
-set t_Co=256
-colorscheme slate
 
 nnoremap <C-A> <Nop>
 
@@ -50,22 +44,39 @@ nnoremap <C-A> <Nop>
 set clipboard=unnamed
 
 """"""""""""""""""""""""""""""""""""
-" Map leader key
+" netrw
+""""""""""""""""""""""""""""""""""""
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+
+""""""""""""""""""""""""""""""""""""
+" Map leader key and ;-:
 """"""""""""""""""""""""""""""""""""
 let mapleader = ","
+noremap : ;
+noremap ; :
 
 """""""""""""""""""""""""""""""""""
 " Bind F5 to save file if modified and execute python script in a buffer
 """"""""""""""""""""""""""""""""""""
 autocmd FileType python nnoremap <silent> <F5> :call SaveAndExecutePython()<CR>
+autocmd FileType python inoremap <silent> <F5> <Esc>:call SaveAndExecutePython()<CR>i
 autocmd FileType python vnoremap <silent> <F5> :<C-u>call SaveAndExecutePython()<CR>
 
 """"""""""""""""""""""""""""""""""""
-" save and quit
+" Switching vim windows
 """"""""""""""""""""""""""""""""""""
-nnoremap <Leader>w :write<CR>
-nnoremap <Leader>q :confirm quit<CR>
-nnoremap <Leader>Q :confirm quitall<CR>
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+
+""""""""""""""""""""""""""""""""""""
+" Run macros
+""""""""""""""""""""""""""""""""""""
+nnoremap Q @q
+vnoremap Q :normal @q<cr>
 
 """"""""""""""""""""""""""""""""""""
 " Code Indentation
@@ -77,6 +88,13 @@ vnoremap > >gv
 " sort selected rows
 """"""""""""""""""""""""""""""""""""
 vnoremap <Leader>s :sort<CR>
+
+""""""""""""""""""""""""""""""""""""
+" HTML support
+""""""""""""""""""""""""""""""""""""
+nnoremap <Leader>f :set syntax=html<CR>:%!tidy -q -i --show-errors 0<CR>
+nnoremap <Leader>he :call HtmlEscape()<CR>
+nnoremap <Leader>hu :call HtmlUnescape()<CR> 
 
 """"""""""""""""""""""""""""""""""""
 " Python build Function
@@ -142,15 +160,15 @@ endfunction
 " HTML Entities function
 """"""""""""""""""""""""""""""""""""
 function! HtmlEscape()
-    silent %s/&/\&amp;/g
-    silent %s/ /\&nbsp;/g
-    silent %s/</\&lt;/g
-    silent %s/>/\&gt;/g
+    silent! %s/&/\&amp;/eg
+    silent! %s/ /\&nbsp;/eg
+    silent! %s/</\&lt;/eg
+    silent! %s/>/\&gt;/eg
 endfunction
 
 function! HtmlUnescape()
-    silent %s/&amp;/\&/g
-    silent %s/&gt;/>/g
-    silent %s/&lt;/</g
-    silent %s/&nbsp;/ /g
+    silent! %s/&amp;/\&/eg
+    silent! %s/&gt;/>/eg
+    silent! %s/&lt;/</eg
+    silent! %s/&nbsp;/ /eg
 endfunction
