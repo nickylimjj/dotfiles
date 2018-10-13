@@ -17,13 +17,13 @@ parse_git_branch() {
 
 export PS1="${yellow}\\u${reset}@${light_red}\\h${reset}:\\W${blue}\$(parse_git_branch)${reset} \\n${magenta}\$${reset} "
 
-# call neofetch IF NOT a tmux session
-if ! { [ -n "$TMUX" ]; } then
-    echo -e "tm l\t- list tmuxinator sessions"
-    echo -e ".vimrc\t- opens .vimrc"
-    echo -e ".ba\t- opens .bash_aliases"
-    echo -e ".bp\t- opens .bash_prompt"
-    echo -e ".i3\t- opens i3 config file"
-    echo -e ""
-fi
+neofetch
+echo -e ".vimrc\t- opens .vimrc"
+echo -e ".ba\t- opens .bash_aliases"
+echo -e ".bp\t- opens .bash_prompt"
+echo -e ".i3\t- opens i3 config file"
+echo -e ".i3b\t- opens i3blocks config file"
+echo -e "locate, find, file, cut"
+echo -e "tree, xclip"
+echo -e ""
 
