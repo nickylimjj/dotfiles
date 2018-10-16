@@ -25,5 +25,6 @@ echo -e ".i3\t- opens i3 config file"
 echo -e ".i3b\t- opens i3blocks config file"
 echo -e "locate, find, file, cut"
 echo -e "tree, xclip"
+echo -e "clamscan"
 echo -e ""
 

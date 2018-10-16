@@ -6,6 +6,7 @@ alias .i3b='vi ~/.config/i3/myi3blocks.conf'
 
 alias spotify="/snap/bin/spotify --force-device-scale-factor=2"
 alias eip="host myip.opendns.com resolver1.opendns.com"
+alias qc="vpn connect cuvpn.cuvpn.cornell.edu"
 
 # useful aliases
 alias tree="find . -print | sed -e 's;/*/;|;g;s;|; |;g'"
@@ -21,3 +22,6 @@ alias j26='ssh nl495@ath-6.ece.cornell.edu'
 alias j27='ssh nl495@ath-7.ece.cornell.edu'
 alias j28='ssh nl495@ath-8.ece.cornell.edu'
 alias j29='ssh nl495@ath-9.ece.cornell.edu'
+
+# movement into folders
+alias pg='cd $HOME/playground; l.'
