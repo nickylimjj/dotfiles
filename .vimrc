@@ -19,7 +19,7 @@ set t_Co=256
 colorscheme slate
 set number
 set rnu
-set tw=79
+"set tw=79
 set colorcolumn=81
 highlight ColorColumn ctermbg=8
 set tabstop=4
