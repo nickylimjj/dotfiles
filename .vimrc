@@ -4,24 +4,33 @@
 syntax on
 filetype plugin indent on
 
+set splitbelow
+
 """"""""""""""""""""""""""""""""""""
 " Plugins
 """"""""""""""""""""""""""""""""""""
 call plug#begin()
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'     " ,c[SPACE] 
+Plug 'vim-syntastic/syntastic'      " linter
+Plug 'valloric/youcompleteme'       " auto-completion
+Plug 'dracula/vim',{'as':'dracula'} " colorscheme
+" ctrlp fuzzy finder
+" NERDTree ?
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""
 " General 2
 """"""""""""""""""""""""""""""""""""
 set t_Co=256
-colorscheme slate
+colorscheme dracula "slate
 set number
 set rnu
 "set tw=79
 set colorcolumn=81
-highlight ColorColumn ctermbg=8
+set cursorline
+highlight CursorLine ctermbg=Black
+highlight ColorColumn ctermbg=DarkGrey
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -44,10 +53,12 @@ nnoremap <C-A> <Nop>
 set clipboard=unnamed
 
 """"""""""""""""""""""""""""""""""""
-" netrw
+" netrw :Ve
 """"""""""""""""""""""""""""""""""""
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4        " horizontal split
+let g:netrw_altv = 1                " open splits to the right
 let g:netrw_winsize = 25
 
 """"""""""""""""""""""""""""""""""""
@@ -77,6 +88,33 @@ noremap <C-k> <C-w>k
 """"""""""""""""""""""""""""""""""""
 nnoremap Q @q
 vnoremap Q :normal @q<cr>
+
+""""""""""""""""""""""""""""""""""""
+" Plugin /YouCompleteMe
+""""""""""""""""""""""""""""""""""""
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+"hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#64666d gui=NONE
+"hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
+
+""""""""""""""""""""""""""""""""""""
+" Plugin /syntastic
+""""""""""""""""""""""""""""""""""""
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+"let g:syntastic_mode_map = {'mode':'passive'}
+":command Sc :SyntasticCheck
+
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
 
 """"""""""""""""""""""""""""""""""""
 " Code Indentation

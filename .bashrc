@@ -138,3 +138,7 @@ source $HOME/.keychain/$HOSTNAME-sh
 # get immediate notification of background job termination
 set -o notify
 export STORAGE="/media/storage"
+source /opt/ros/melodic/setup.bash
+
+export PYTHONPATH="${PYTHONPATH}:$HOME/.lib/python"
+

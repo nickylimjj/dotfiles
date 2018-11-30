@@ -26,6 +26,7 @@ echo -e ".i3b\t- opens i3blocks config file"
 echo -e "tk\t- view toolkit"
 echo -e "locate, find, file, cut"
 echo -e "tree, xclip, df, du"
+echo -e "python: pipenv install|shell, pdb, gdb-peda"
 echo -e "clamscan, mdless"
 echo -e ""
 
