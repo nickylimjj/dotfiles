@@ -36,6 +36,7 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 set expandtab
+set nowrap
 set hlsearch
 set incsearch
 nnoremap <space> :noh<CR>

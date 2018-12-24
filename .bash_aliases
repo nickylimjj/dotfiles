@@ -30,6 +30,9 @@ alias j27='ssh -X nl495@ath-7.ece.cornell.edu'
 alias j28='ssh -X nl495@ath-8.ece.cornell.edu'
 alias j29='ssh -X nl495@ath-9.ece.cornell.edu'
 
+# homework view
+alias hwk='tasky --tasklist 1'
+
 # movement into folders
 alias pg='cd $HOME/playground; l.'
 
